@@ -32,6 +32,16 @@
     text-decoration: none;
 }
 
+.footer-list-item {
+    display: inline-block;
+    height: auto;
+    margin-right: 2%;
+    cursor: pointer;
+    padding: 0.5%;
+    margin: 0.1%;
+    vertical-align: top;
+}
+
 .footer-list-item:nth-child(1) {
     margin-left: 1%;
 }
