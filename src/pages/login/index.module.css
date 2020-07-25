@@ -1,0 +1,17 @@
+.login {
+    width: 83%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.form-control {
+    width: 30%;
+    margin: 0 auto;
+    padding: 1%;
+    text-align: center;
+}
+
+.form-button {
+    width: auto;
+    padding: 2%;
+}
