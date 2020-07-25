@@ -10,7 +10,7 @@ const ShareThoughtsPage = () => {
         <PageLayout>
             <div className={styles.container}>
             <Title title='Share your thoughts...' />
-            <textarea className={styles.textarea}>Publication...</textarea>
+            <textarea className={styles.textarea} defaultValue="Publication..."></textarea>
             <SubmitButton title='Post'/>
             </div>
             <Origamis length={3}/>
