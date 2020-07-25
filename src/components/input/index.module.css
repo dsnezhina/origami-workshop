@@ -1,6 +1,6 @@
 .label {
     float: left;
-    width: 30%;
+    width: 36%;
     text-align: right;
 }
 
@@ -11,4 +11,11 @@
     width: 50%;
     border-radius: 6px;
     color: #234465;
+}
+
+.form-control {
+    width: 30%;
+    margin: 0 auto;
+    padding: 1%;
+    text-align: center;
 }

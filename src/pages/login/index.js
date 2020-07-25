@@ -32,20 +32,24 @@ class LoginPage extends Component {
 
         return (
             <PageLayout>
-                <Title title='Login' />
-                    <Input
-                        value={email}
-                        onChange={(e) => this.onChange(e, "email")}
-                        label="Email"
-                        id="email"
-                    />
-                    <Input
-                        value={password}
-                        onChange={(e) => this.onChange(e, "password")}
-                        label="Password"
-                        id="password"
-                    />
-                    <SubmitButton title='Login' />
+                <div className={styles.form}>
+                    <Title title='Login' />
+                    <form>
+                        <Input
+                            value={email}
+                            onChange={(e) => this.onChange(e, "email")}
+                            label="Email"
+                            id="email"
+                        />
+                        <Input
+                            value={password}
+                            onChange={(e) => this.onChange(e, "password")}
+                            label="Password"
+                            id="password"
+                        />
+                        <SubmitButton title='Login' />
+                    </form>
+                </div>
             </PageLayout >
         );
     }

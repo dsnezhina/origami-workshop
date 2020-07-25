@@ -34,26 +34,30 @@ class RegisterPage extends Component {
 
         return (
             <PageLayout>
+                <div className={styles.form}>
                     <Title title='Register' />
-                    <Input
-                        value={email}
-                        onChange={(e) => this.onChange(e, "email")}
-                        label="Email"
-                        id="email"
-                    />
-                    <Input
-                        value={password}
-                        onChange={(e) => this.onChange(e, "password")}
-                        label="Password"
-                        id="password"
-                    />
-                    <Input
-                        value={rePassword}
-                        onChange={(e) => this.onChange(e, "rePassword")}
-                        label="Re-password"
-                        id="re-password"
-                    />
-                    <SubmitButton title='Register' />
+                    <form>
+                        <Input
+                            value={email}
+                            onChange={(e) => this.onChange(e, "email")}
+                            label="Email"
+                            id="email"
+                        />
+                        <Input
+                            value={password}
+                            onChange={(e) => this.onChange(e, "password")}
+                            label="Password"
+                            id="password"
+                        />
+                        <Input
+                            value={rePassword}
+                            onChange={(e) => this.onChange(e, "rePassword")}
+                            label="Re-password"
+                            id="re-password"
+                        />
+                        <SubmitButton title='Register' />
+                    </form>
+                </div>
             </PageLayout >
         );
     }
