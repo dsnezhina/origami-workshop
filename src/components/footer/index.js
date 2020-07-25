@@ -12,7 +12,14 @@ const Footer = () => {
             <div>
                 {
                     links.map(navElement => {
-                        return (<Link href={navElement.link} title={navElement.title} type="header" />)
+                        return (
+                            <Link
+                                key={navElement.title}
+                                href={navElement.link}
+                                title={navElement.title}
+                                type="header"
+                            />
+                        )
                     })
                 }
                 <img className={styles.logo} src={logo} alt="" />

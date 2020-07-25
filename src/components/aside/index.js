@@ -10,7 +10,14 @@ const Aside = () => {
         <aside className={styles.aside}>
             {
                 links.map(navElement => {
-                    return (<Link href={navElement.link} title={navElement.title} type="aside" />)
+                    return (
+                        <Link
+                            key={navElement.title}
+                            href={navElement.link}
+                            title={navElement.title}
+                            type="aside"
+                        />
+                    )
                 })
             }
         </aside>
