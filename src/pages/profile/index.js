@@ -3,8 +3,7 @@ import PageLayout from '../../components/page-layout';
 import styles from './index.module.css'
 import Title from '../../components/title'
 import Origamis from '../../components/origamis'
-
-
+import UserContext from '../../Context';
 
 class ProfilePage extends Component {
     constructor(props) {
@@ -15,6 +14,8 @@ class ProfilePage extends Component {
             posts: null
         }
     }
+
+    static contextType = UserContext;
 
     componentDidMount() {
         const id = this.props.match.params.userid
@@ -35,23 +36,29 @@ class ProfilePage extends Component {
         })
     }
 
+    logOut = () => {
+        this.context.logOut();
+        this.props.history.push('/')
+    }
+
     render() {
         const { username, posts } = this.state;
-        
+
         if (!username) {
-            return(
+            return (
                 <PageLayout>
                     <div>Loading...</div>
                 </PageLayout>
             )
         }
-        
+
         return (
             <PageLayout>
                 <div>
                     <Title title='Profile' />
                     <p>User: {username}</p>
                     <p>Posts: {posts}</p>
+                    <button className={styles.button} onClick={this.logOut}>Logout</button>
                 </div>
                 <Origamis length={3} />
             </PageLayout>
