@@ -5,7 +5,7 @@ import SubmitButton from '../../components/button/submit-button'
 import Input from '../../components/input'
 import styles from './index.module.css'
 import authenticate from '../../utils/authenticate'
-import UserContext from '../../App'
+import UserContext from '../../Context'
 
 class RegisterPage extends Component {
 
