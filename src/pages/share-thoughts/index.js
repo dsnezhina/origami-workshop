@@ -9,9 +9,10 @@ import getCookie from '../../utils/getCookie';
 const ShareThoughtsPage = () => {
 
     const [publication, setPublication] = useState('');
-    const [updatedOrigami, setUpdatedOrigami] = useState([])
+    const [updatedOrigami, setUpdatedOrigami] = useState([]);
 
     const handleSubmit = async () => {
+
         const token = getCookie('x-auth-token');
 
         await fetch('http://localhost:9999/api/origami', {
