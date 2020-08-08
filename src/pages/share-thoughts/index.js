@@ -37,7 +37,7 @@ const ShareThoughtsPage = () => {
                 <textarea value={publication} className={styles.textarea} onChange={e => setPublication(e.target.value)}></textarea>
                 <SubmitButton title='Post' onClick={handleSubmit} />
             </div>
-            <Origamis length={3} updatedOrigami={updatedOrigami} />
+                <Origamis length={3} updatedOrigami={updatedOrigami} />
         </PageLayout>
     );
 }
