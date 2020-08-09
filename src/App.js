@@ -5,12 +5,18 @@ import getCookie from './utils/getCookie';
 
 const App = (props) => {
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(
+        props.user
+            ? {
+                ...props.user,
+                loggedIn: true
+            }
+            : null);
+    const origamis = props.origamis || [];
 
-    const logIn = (user) => {
+    const logIn = (userObject) => {
         setUser({
-            ...user,
+            ...userObject,
             loggedIn: true
         });
     };
@@ -22,50 +28,12 @@ const App = (props) => {
         });
     };
 
-    useEffect(() => {
-        const token = getCookie('x-auth-token');
-
-        if (!token) {
-            logOut()
-            setLoading(false)
-            return
-        }
-
-        fetch('http://localhost:9999/api/user/verify', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
-            }
-        }).then(promise => {
-            return promise.json();
-        }).then(response => {
-            if (response.status) {
-                logIn({
-                    username: response.user.username,
-                    id: response.user._id
-                })
-            } else {
-                logOut()
-                setLoading(false)
-            }
-
-            setLoading(false)
-        })
-    }, []);
-
-    if (loading) {
-        return (
-            <div>Loading...</div>
-        )
-    }
-
-
     return (
         <UserContext.Provider value={{
             user,
             logIn,
-            logOut
+            logOut,
+            origamis
         }}>
             {props.children}
         </UserContext.Provider >
@@ -74,85 +42,4 @@ const App = (props) => {
 
 }
 
-export default App
-
-// class App extends Component {
-//     constructor(props) {
-//         super(props)
-
-//         this.state = {
-//             loggedIn: null,
-//             user: null
-//         }
-//     }
-
-//     logIn = (user) => {
-//         this.setState({
-//             loggedIn: true,
-//             user
-//         })
-//     }
-
-//     logOut = () => {
-//         document.cookie = "x-auth-token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
-//         this.setState({
-//             loggedIn: false,
-//             user: null
-//         })
-//     }
-
-//     componentDidMount() {
-//         const token = getCookie('x-auth-token');
-
-//         if (!token) {
-//             this.logOut()
-//             return
-//         }
-
-//         fetch('http://localhost:9999/api/user/verify', {
-//             method: 'POST',
-//             body: JSON.stringify({
-//                 token
-//             }),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         }).then(promise => {
-//             return promise.json();
-//         }).then(response => {
-//             if (response.status) {
-//                 this.logIn({
-//                     username: response.user.username,
-//                     id: response.user.id
-//                 })
-//             } else {
-//                 this.logOut()
-//             }
-//         })
-//     }
-
-//     render() {
-
-//         const {
-//             loggedIn,
-//             user
-//         } = this.state;
-
-//         // if (loggedIn === null) {
-//         //     return (<div>Loading...</div>)
-//         // }
-
-//         return (
-//             <UserContext.Provider value={{
-//                 loggedIn,
-//                 user,
-//                 logIn: this.logIn,
-//                 logOut: this.logOut
-//             }}>
-//                 {this.props.children}
-//             </UserContext.Provider >
-
-//         )
-//     }
-// }
-
+export default App;
