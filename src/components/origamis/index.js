@@ -1,35 +1,36 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import styles from './index.module.css';
-import Origami from '../origami';
-import getOrigami from '../../utils/origami';
+import React, { useState, useCallback, useEffect, useMemo, useContext } from 'react'
+import styles from './index.module.css'
+import Origami from '../origami'
+import getOrigami from '../../utils/origami'
+import UserContext from '../../Context'
+
 
 const Origamis = (props) => {
-
-    const [origamis, setOrigamis] = useState([]);
+    const context = useContext(UserContext);
+    const [origamis, setOrigamis] = useState(context.origamis || []);
 
     const getOrigamis = useCallback(async () => {
         const origamis = await getOrigami(props.length)
         setOrigamis(origamis)
-    }, [props.length]);
+    }, [props.length])
 
-
-    const renderOrigamis = () => {
-        return origamis.map((origami, index) => {
+    const renderOrigamis = useMemo(() => {
+        return origamis.map((origam, index) => {
             return (
-                <Origami key={origami._id} index={index} {...origami} />
+                <Origami key={origam._id} index={index} {...origam} />
             )
         })
-    };
+    }, [origamis])
 
     useEffect(() => {
-        getOrigamis();
-    }, [props.updatedOrigami, getOrigamis]);
+        getOrigamis()
+    }, [props.updatedOrigami, getOrigamis])
 
     return (
         <div className={styles["origamis-wrapper"]}>
-            {renderOrigamis()}
+            {renderOrigamis}
         </div>
-    );
-};
+    )
+}
 
 export default Origamis;
